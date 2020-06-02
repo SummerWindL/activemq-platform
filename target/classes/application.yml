@@ -1,0 +1,27 @@
+logging:
+  file: logs/platform-ikinloop-activemq.log
+  level:
+    root: INFO
+    com:
+      ikinloop: DEBUG
+
+spring:
+  activemq:
+    broker-url: tcp://192.168.9.201:61616
+    user: admin
+    password: admin
+    packages:
+      trust-all: true # 可信任的反序列包
+
+activemq:
+  topic-prefix: sTp/ecg/v2
+  server-ip: 192.168.9.201
+  server-port: 61616
+  client-name: platformMqClient
+  client-pwd: dg/5SUYjZMbv9ubt1IU0RS84IEBSvYsihc0aZgHsV6QCQqeKtCDT7QBZXM4B2E2jCst5bI5lv4TsFx3+lmgwIM3yUBvM3M3C5LJAd0paju2ps3Z+SS2D8ITfcWJIyhgtV8+izyQ9tXTsaod/1yK+ppMgVwt5rSot29aFnhnPF20=
+  jolokia-port: 8161
+  jolokia-name: admin
+  jolokia-pwd: admin
+
+
+
