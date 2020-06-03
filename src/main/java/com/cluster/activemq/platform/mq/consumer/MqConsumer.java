@@ -5,6 +5,7 @@ import com.cluster.activemq.platform.bean.MqCmd;
 import com.cluster.activemq.platform.common.MqConst;
 import com.cluster.activemq.platform.exception.IkinloopCreateQueueException;
 import com.cluster.activemq.platform.service.IMqhandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import java.util.Map;
  * @author: fuyl
  * @create: 2020-05-28 20:47
  **/
-
+@Slf4j
 public class MqConsumer implements Runnable{
     private String mqType = "";
     private String mqName = "";
@@ -88,7 +89,12 @@ public class MqConsumer implements Runnable{
                 continue;
             }
 
-            handleMsg(mqCmd);
+            //此处线程内处理消息发生异常 业务级别错误 不应该退出线程 只记录错误日志 TODO 存数据库
+            try{
+                handleMsg(mqCmd);
+            }catch (Exception e){
+                log.error("cmdNo:{} 出错：{}",mqCmd.getCmdNo(),e.getMessage());
+            }
 
         }
     }

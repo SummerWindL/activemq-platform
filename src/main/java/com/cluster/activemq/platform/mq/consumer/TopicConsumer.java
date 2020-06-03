@@ -93,18 +93,20 @@ public class TopicConsumer implements IMqConsumer{
     @Override
     public MqCmd reviceMsg(){
         MqCmd mqCmd= null;
+        String cmdNo="";
+        String cmdMsg="";
         try {
             TextMessage msg = (TextMessage) consumer.receive();
             msg.acknowledge();
             JSONObject jsonObject = JSONObject.fromObject(msg.getText());
-            String cmdNo = jsonObject.get("cmdNo").toString();
-            String cmdMsg = jsonObject.get("cmdMsg").toString();
+            cmdNo = jsonObject.get("cmdNo").toString();
+            cmdMsg = jsonObject.get("cmdMsg").toString();
             mqCmd= new MqCmd();
             mqCmd.setCmdNo(cmdNo);
             mqCmd.setCmdMsg(cmdMsg);
-
+            logger.info("cmdNo：{} 接收成功：{}",cmdNo,cmdMsg);
         } catch (Exception e) {
-            this.destory();
+            logger.error("cmdNo：{} 接收出错：{}",cmdNo,e.getMessage());
             e.printStackTrace();
             return null;
         }

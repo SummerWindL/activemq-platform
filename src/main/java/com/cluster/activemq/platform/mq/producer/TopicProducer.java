@@ -103,8 +103,9 @@ public class TopicProducer implements IMqProducer{
             JSONObject jsonObject = JSONObject.fromObject(mqCmd);
             TextMessage msg = session.createTextMessage(jsonObject.toString());
             producer.send(msg);
+            logger.info("cmdNo：{} 发送消息 message：{} 成功",cmdNo,message);
         } catch (Exception e) {
-            this.destory();
+            logger.error("cmdNo：{} 发送出错：{}",cmdNo,e.getMessage());
             e.printStackTrace();
             return MqConst.FAILED;
         }
