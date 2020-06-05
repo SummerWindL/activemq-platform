@@ -104,7 +104,6 @@ public class TopicConsumer implements IMqConsumer{
             mqCmd= new MqCmd();
             mqCmd.setCmdNo(cmdNo);
             mqCmd.setCmdMsg(cmdMsg);
-            logger.info("cmdNo：{} 接收成功：{}",cmdNo,cmdMsg);
         } catch (Exception e) {
             logger.error("cmdNo：{} 接收出错：{}",cmdNo,e.getMessage());
             e.printStackTrace();
