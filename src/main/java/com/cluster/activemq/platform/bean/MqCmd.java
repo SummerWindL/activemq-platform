@@ -14,5 +14,6 @@ import java.io.Serializable;
 public class MqCmd implements Serializable {
 
     private String cmdNo;
+    private String cmdType;
     private String cmdMsg;
 }

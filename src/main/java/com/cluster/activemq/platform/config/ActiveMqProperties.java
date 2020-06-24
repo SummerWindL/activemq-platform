@@ -17,4 +17,24 @@ public class ActiveMqProperties {
     private String brokerUrl;
     private String user;
     private String password;
+    /**
+     * 服务类型 producer、consumer
+     */
+    private String serviceType;
+    /**
+     * mq类型 topic queue
+     */
+    private String mqType;
+    /**
+     * mq名称 自定义名称
+     */
+    private String mqName;
+
+    private String cmdNo;
+
+    private String cmdMsg;
+
+    private int sleepTime;
+
+    private boolean isOpenTestMode;
 }

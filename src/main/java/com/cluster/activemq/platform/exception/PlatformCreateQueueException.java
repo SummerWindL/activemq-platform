@@ -7,13 +7,13 @@ package com.cluster.activemq.platform.exception;
  * @create: 2020-05-26 16:06
  **/
 
-public class IkinloopCreateQueueException extends RuntimeException {
+public class PlatformCreateQueueException extends RuntimeException {
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IkinloopCreateQueueException() {
+    public PlatformCreateQueueException() {
         super();
     }
 
@@ -25,7 +25,7 @@ public class IkinloopCreateQueueException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IkinloopCreateQueueException(String message) {
+    public PlatformCreateQueueException(String message) {
         super(message);
     }
 
@@ -43,7 +43,7 @@ public class IkinloopCreateQueueException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IkinloopCreateQueueException(String message, Throwable cause) {
+    public PlatformCreateQueueException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -60,7 +60,7 @@ public class IkinloopCreateQueueException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IkinloopCreateQueueException(Throwable cause) {
+    public PlatformCreateQueueException(Throwable cause) {
         super(cause);
     }
 
@@ -78,7 +78,7 @@ public class IkinloopCreateQueueException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    protected IkinloopCreateQueueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    protected PlatformCreateQueueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

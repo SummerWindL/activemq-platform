@@ -21,7 +21,7 @@ public class TopicProducerTest {
     public void test() throws Exception {
         TopicProducer mqProducer = new TopicProducer("topic_2222", false);
         for (int i = 1; i <= 10; i++) {
-            mqProducer.pushMsg("cmd_11111", "11111");
+            mqProducer.pushMsg("cmd_11111", "update","11111");
         }
         System.out.println("消息发送完成====");
         mqProducer.destory();

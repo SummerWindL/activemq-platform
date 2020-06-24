@@ -8,6 +8,6 @@ package com.cluster.activemq.platform.mq.producer;
  **/
 public interface IMqProducer {
     public int initProducer();
-    public int pushMsg(String cmdNo, String message);
+    public int pushMsg(String cmdNo,String cmdType, String message);
     public void destory();
 }

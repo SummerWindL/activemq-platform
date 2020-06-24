@@ -95,10 +95,11 @@ public class TopicProducer implements IMqProducer{
     }
 
     @Override
-    public int  pushMsg(String cmdNo, String message){
+    public int  pushMsg(String cmdNo, String cmdType,String message){
         try {
             MqCmd mqCmd = new MqCmd();
             mqCmd.setCmdNo(cmdNo);
+            mqCmd.setCmdType(cmdType);
             mqCmd.setCmdMsg(message);
             JSONObject jsonObject = JSONObject.fromObject(mqCmd);
             TextMessage msg = session.createTextMessage(jsonObject.toString());

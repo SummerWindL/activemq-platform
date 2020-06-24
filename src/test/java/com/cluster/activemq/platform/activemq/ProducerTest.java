@@ -26,7 +26,7 @@ public class ProducerTest {
     public void test() throws Exception {
         QueueProducer mqProducer = new QueueProducer("cmd_10001");
         for (int i = 1; i < 100; i++) {
-            mqProducer.pushMsg("cmd_11111", "11111");
+            mqProducer.pushMsg("cmd_11111", "update","11111");
         }
         System.out.println("消息发送完成====");
     }

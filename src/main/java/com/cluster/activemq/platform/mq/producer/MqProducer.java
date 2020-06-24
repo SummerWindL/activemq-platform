@@ -2,11 +2,8 @@ package com.cluster.activemq.platform.mq.producer;
 
 import com.cluster.activemq.platform.bean.MqCmd;
 import com.cluster.activemq.platform.common.MqConst;
-
 import java.util.Queue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
 
 /**
  * @program: platform-ikinloop-activemq
@@ -15,32 +12,36 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @create: 2020-05-28 20:34
  **/
 
-public class MqProducer implements Runnable{
+public class MqProducer implements Callable {
     private String mqType = "";
     private String mqName = "";
     private IMqProducer producer = null;
     private boolean persistentflag = true;
-    private ExecutorService threadPool = Executors.newFixedThreadPool(1);
-    private Queue queue = new LinkedBlockingQueue();
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
+    private Queue queue = new ConcurrentLinkedQueue();
 
 
     public MqProducer(String mqType, String mqName) {
         this.mqType = mqType;
         this.mqName = mqName;
-        this.startThread();
+
     }
 
     public MqProducer(String mqType, String mqName, boolean persistentflag) {
         this.mqType = mqType;
         this.mqName = mqName;
         this.persistentflag = persistentflag;
+    }
+
+    public void startProducer(){
         this.startThread();
     }
 
-    public synchronized void pushMsg(String cmdNo, String message) {
+    public synchronized void pushMsg(String cmdNo, String cmdType, String cmdMsg) {
         MqCmd mqCmd = new MqCmd();
         mqCmd.setCmdNo(cmdNo);
-        mqCmd.setCmdMsg(message);
+        mqCmd.setCmdType(cmdType);
+        mqCmd.setCmdMsg(cmdMsg);
         if (this.queue.size() > 5000){
             this.queue.remove();
         }
@@ -70,29 +71,28 @@ public class MqProducer implements Runnable{
 
     }
     private void startThread(){
-        new Thread(this).start();
+//        new Thread(this).start();
+
+        FutureTask<MqProducer> task = new FutureTask<MqProducer>(this);
+        executor.submit(task);
 
     }
+
     /**
-     * When an object implementing interface <code>Runnable</code> is used
-     * to create a thread, starting the thread causes the object's
-     * <code>run</code> method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method <code>run</code> is that it may
-     * take any action whatsoever.
+     * Computes a result, or throws an exception if unable to do so.
      *
-     * @see Thread#run()
+     * @return computed result
+     * @throws Exception if unable to compute a result
      */
     @Override
-    public void run() {
+    public Object call() throws Exception {
         IMqProducer producer = null;
         boolean connected = false;
 
         while (true) {
 
             try {
-                Thread.sleep(20);
+                Thread.sleep(100);
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -109,7 +109,7 @@ public class MqProducer implements Runnable{
             if (mqCmd == null){
                 continue;
             }
-            int nRet = producer.pushMsg(mqCmd.getCmdNo(), mqCmd.getCmdMsg());
+            int nRet = producer.pushMsg(mqCmd.getCmdNo(),mqCmd.getCmdType(), mqCmd.getCmdMsg());
             if (MqConst.SUCCESS != nRet){
                 producer.destory();
                 connected = false;

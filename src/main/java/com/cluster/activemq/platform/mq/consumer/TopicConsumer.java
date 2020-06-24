@@ -35,7 +35,7 @@ public class TopicConsumer implements IMqConsumer{
     private String topicName = "";
     ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
-    ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<>();
+    ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<MessageConsumer>();
     AtomicInteger count = new AtomicInteger();
 
     public TopicConsumer(String topicName) {

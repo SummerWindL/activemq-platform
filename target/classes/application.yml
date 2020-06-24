@@ -1,5 +1,5 @@
 logging:
-  file: logs/platform-ikinloop-activemq.log
+  file: logs/platform-activemq.log
   level:
     root: INFO
     com:
@@ -10,6 +10,15 @@ spring:
     broker-url: tcp://192.168.9.201:61616
     user: admin
     password: admin
+    ###  以下配置专用于测试  #####################################################
+    service-type: producer #producer,consumer
+    mq-type: queue #mqType topic,queue
+    mq-name: middle-server-queue #mqName 自定义名称
+    cmd-no: cmd_40001 #命令号
+    cmd-msg: 你好 #消息
+    sleep-time: 1000
+    id-open-test-mode: false
+    ###  以上配置专用于测试   #####################################################
     packages:
       trust-all: true # 可信任的反序列包
 

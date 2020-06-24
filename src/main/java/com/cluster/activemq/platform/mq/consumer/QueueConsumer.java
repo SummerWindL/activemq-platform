@@ -37,7 +37,7 @@ public class QueueConsumer implements IMqConsumer{
     private ActiveMqProperties activeMqProperties = ConfigService.getBean("activeMqProperties");
 
 
-    ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<>();
+    ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<MessageConsumer>();
 
     public QueueConsumer(String queueName) {
         this.queueName = queueName;

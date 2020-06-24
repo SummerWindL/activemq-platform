@@ -25,7 +25,7 @@ public class MqProducerTest {
         //for(int i=1;i<=100000000;i++)
         while (true) {
             Thread.sleep(1000);
-            mqProducer.pushMsg("cmd_10001", "{'key':'预警消息'}");
+            mqProducer.pushMsg("cmd_10001", "update","{'key':'预警消息'}");
         }
     }
 

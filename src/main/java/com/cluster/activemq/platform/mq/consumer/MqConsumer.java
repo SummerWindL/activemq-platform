@@ -3,7 +3,7 @@ package com.cluster.activemq.platform.mq.consumer;
 
 import com.cluster.activemq.platform.bean.MqCmd;
 import com.cluster.activemq.platform.common.MqConst;
-import com.cluster.activemq.platform.exception.IkinloopCreateQueueException;
+import com.cluster.activemq.platform.exception.PlatformCreateQueueException;
 import com.cluster.activemq.platform.service.IMqhandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -24,7 +24,7 @@ public class MqConsumer implements Runnable{
     private IMqConsumer consumer = null;
     private QueueConsumer queueConsumer = null;
     private TopicConsumer topicConsumer = null;
-    private Map<String, Object> handleMap = new HashMap<>();
+    private Map<String, Object> handleMap = new HashMap<String, Object>();
 
 
     public MqConsumer(String mqType, String mqName) {
@@ -35,7 +35,7 @@ public class MqConsumer implements Runnable{
 
     public synchronized void addHandler(String cmdNo, IMqhandler iMqhandler) {
         if (StringUtils.isEmpty(cmdNo) && handleMap.containsKey(cmdNo)) {
-            throw new IkinloopCreateQueueException();
+            throw new PlatformCreateQueueException();
         }
         handleMap.put(cmdNo, iMqhandler);
     }
