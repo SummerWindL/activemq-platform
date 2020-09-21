@@ -7,7 +7,11 @@ import com.cluster.activemq.platform.mq.producer.MqProducer;
 import com.cluster.activemq.platform.service.IMqhandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @program: middle-server
@@ -19,7 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ModeServiceImpl {
     //通过配置文件控制 生产类型
-    @Autowired
+    @Qualifier(value = "activeMqProperties")
+    @Resource
     private ActiveMqProperties config;
 
     @Autowired

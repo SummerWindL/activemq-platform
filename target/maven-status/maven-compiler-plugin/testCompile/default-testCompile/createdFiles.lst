@@ -1,0 +1,7 @@
+com\cluster\activemq\platform\PlatformActivemqClusterApplicationTest.class
+com\cluster\activemq\platform\activemq\TopicProducerTest.class
+com\cluster\activemq\platform\activemq\ProducerTest.class
+com\cluster\activemq\platform\activemq\Cmd10001Handler.class
+com\cluster\activemq\platform\activemq\MqConsumerTest.class
+com\cluster\activemq\platform\activemq\MqProducerTest.class
+com\cluster\activemq\platform\activemq\TopicConsumerTest.class

@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Primary;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "spring.activemq")
-@Primary
 public class ActiveMqProperties {
     private String brokerUrl;
     private String user;
