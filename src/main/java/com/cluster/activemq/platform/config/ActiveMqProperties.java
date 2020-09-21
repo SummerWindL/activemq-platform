@@ -3,6 +3,7 @@ package com.cluster.activemq.platform.config;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /**
  * @program: platform-base
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "spring.activemq")
+@Primary
 public class ActiveMqProperties {
     private String brokerUrl;
     private String user;
